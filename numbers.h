@@ -1,5 +1,3 @@
-#include "baseFunctions.h"
-
 void zero(){
 	int leds[] = {};
 	switchOnLEDs(leds);

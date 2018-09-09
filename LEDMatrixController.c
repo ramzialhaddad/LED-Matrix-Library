@@ -8,19 +8,24 @@ Programming Layout for this project:
 */
 #include <stdio.h>
 #include <wiringPi.h>
+#include "baseFunctions.h"
 #include "letters.h"
+#include "numbers.h"
+//#include "symbols.h"
 //						||		1		 ||		  2		   ||			3	  ||		4	   ||		  5		 ||			6	   ||		 7		  ||	    8       || 
-const int columns[40] = {25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11,};
+//const int columns[40] = {25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11, 25, 5, 7, 19, 11};
 
 
 //					  ||		1	||		  2		  ||		3	  ||		4	 ||		  5		     ||			6	     ||		 7		     ||	    8            || 
-const int rows[40] = {1, 1, 1, 1, 1, 13, 13, 13, 13, 13, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 23, 23, 23, 23, 23, 15, 15, 15, 15, 15, 27, 27, 27, 27, 27, 17, 17, 17, 17, 17};
+//const int rows[40] = {3, 3, 3, 3, 3, 13, 13, 13, 13, 13, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 23, 23, 23, 23, 23, 15, 15, 15, 15, 15, 27, 27, 27, 27, 27, 17, 17, 17, 17, 17};
+
+const int gpioPins1[14] = {4,17,18,27,22,23,24,25,5,6,12,13,19,16};
+//const int indexPins[14] = {1,3,5,7,9,11,13,15,17,19,21,23,25,27};
 
 
 void cleanup(){	
-	for(int x = 0; x < sizeof(columns)/sizeof(int)){
-		digitalWrite(rows[x], 0);
-		digitalWrite(columns[x], 0);
+	for(int x = 0; x < sizeof(gpioPins1)/sizeof(int); x++){
+		digitalWrite(gpioPins1[x], 0);
 	}
 }
 
@@ -28,9 +33,8 @@ int main(void){
 	wiringPiSetupGpio();
 
 	//Let's set up the pinMode
-	for(int x = 0; x sizeof(columns)/sizeof(int)){
-		pinMode(columns[x], OUTPUT);
-		pinMode(rows[x], OUTPUT);
+	for(int x = 0; x < sizeof(gpioPins1)/sizeof(int); x++){
+		pinMode(gpioPins1[x], OUTPUT);
 	}
 
 	
